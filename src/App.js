@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import Table from './Table';
+import { useRef, useState } from 'react';
 
-function App() {
+const App = () => {
+  const RefTable = useRef();
+  const [isTableVisible, setIsTableVisible] = useState(false);
+
+  const handleOnClick = () => {
+    // Zeige oder verstecke die Tabelle, abhängig vom aktuellen Zustand
+    setIsTableVisible((prevVisible) => !prevVisible);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='root'>
+      <button onClick={handleOnClick}>CMTS</button>
+      {isTableVisible && <Table ref={RefTable} />}
     </div>
   );
-}
+};
 
 export default App;
